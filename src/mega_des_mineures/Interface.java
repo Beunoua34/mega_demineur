@@ -17,8 +17,7 @@ public class Interface extends javax.swing.JFrame {
         initComponents();
         Grille.setVisible(false);
         stop.setVisible(false);
-        
-        
+
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < 26; j++) {
                 //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
@@ -26,6 +25,8 @@ public class Interface extends javax.swing.JFrame {
             }
         }
     }
+
+    private int dif;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,18 +160,23 @@ public class Interface extends javax.swing.JFrame {
         Grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
+        dif = 1;
+        initialiser_partie(dif);
+
     }//GEN-LAST:event_facileActionPerformed
 
     private void moyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moyenActionPerformed
         Grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
+        dif = 2;
     }//GEN-LAST:event_moyenActionPerformed
 
     private void difficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficileActionPerformed
         Grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
+        dif = 3;
     }//GEN-LAST:event_difficileActionPerformed
 
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
@@ -212,6 +218,34 @@ public class Interface extends javax.swing.JFrame {
                 new Interface().setVisible(true);
             }
         });
+    }
+
+    public void initialiser_partie(int a) {
+        if (a == 1) {
+            for (int i = 0; i < 25; i++) {
+                for (int j = 0; j < 25; j++) {
+                    Cellule cellGraph = new Cellule();
+                    Grille.add(cellGraph);
+                }
+            }
+
+        } else if (a == 2) {
+            for (int i = 0; i < 25; i++) {
+                for (int j = 0; j < 25; j++) {
+                    CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
+                    panneau_grille.add(cellGraph);
+                }
+            }
+
+        } else if (a == 3) {
+            for (int i = 0; i < 25; i++) {
+                for (int j = 0; j < 25; j++) {
+                    CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
+                    panneau_grille.add(cellGraph);
+                }
+            }
+
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
