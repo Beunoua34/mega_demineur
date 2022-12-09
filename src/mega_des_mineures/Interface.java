@@ -224,24 +224,24 @@ public class Interface extends javax.swing.JFrame {
         if (a == 1) {
             for (int i = 0; i < 25; i++) {
                 for (int j = 0; j < 25; j++) {
-                    Cellule cellGraph = new Cellule();
-                    Grille.add(cellGraph);
+                    //Cellule cellGraph = new Cellule();
+                    //Grille.add(cellGraph);
                 }
             }
 
         } else if (a == 2) {
             for (int i = 0; i < 25; i++) {
                 for (int j = 0; j < 25; j++) {
-                    CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
-                    panneau_grille.add(cellGraph);
+                    //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
+                   // Grille.add(cellGraph);
                 }
             }
 
         } else if (a == 3) {
             for (int i = 0; i < 25; i++) {
                 for (int j = 0; j < 25; j++) {
-                    CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
-                    panneau_grille.add(cellGraph);
+                    //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
+                   // Grille.add(cellGraph);
                 }
             }
 
