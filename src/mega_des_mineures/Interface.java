@@ -16,6 +16,7 @@ public class Interface extends javax.swing.JFrame {
     public Interface() {
         initComponents();
         Grille.setVisible(false);
+        stop.setVisible(false);
         
         
         for (int i = 0; i < 26; i++) {
@@ -35,37 +36,49 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        Difficulté = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        facile = new javax.swing.JButton();
+        moyen = new javax.swing.JButton();
+        difficile = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        Grille = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        Grille = new javax.swing.JPanel();
+        stop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        Difficulté.setBackground(new java.awt.Color(255, 255, 255));
+        Difficulté.setPreferredSize(new java.awt.Dimension(100, 100));
 
         jLabel1.setText("Bienvenue sur le méga-démineur !\n\n");
 
         jLabel2.setText("Choisissez une difficulté :");
 
-        jButton1.setText("Facile");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        facile.setText("Facile");
+        facile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                facileActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Moyen");
+        moyen.setText("Moyen");
+        moyen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moyenActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Difficile");
+        difficile.setText("Difficile");
+        difficile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                difficileActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel4.setText("25x25");
@@ -76,80 +89,95 @@ public class Interface extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel6.setText("100x100");
 
-        Grille.setBackground(new java.awt.Color(204, 204, 204));
+        javax.swing.GroupLayout DifficultéLayout = new javax.swing.GroupLayout(Difficulté);
+        Difficulté.setLayout(DifficultéLayout);
+        DifficultéLayout.setHorizontalGroup(
+            DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DifficultéLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addGroup(DifficultéLayout.createSequentialGroup()
+                        .addComponent(facile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(moyen)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(difficile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        DifficultéLayout.setVerticalGroup(
+            DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DifficultéLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(facile)
+                    .addComponent(jLabel4)
+                    .addComponent(moyen)
+                    .addComponent(jLabel5)
+                    .addComponent(difficile)
+                    .addComponent(jLabel6))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 400, 110));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel3.setText("Méga-Démineur");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 400, 70));
+
+        Grille.setBackground(new java.awt.Color(255, 255, 255));
         Grille.setMinimumSize(new java.awt.Dimension(400, 400));
         Grille.setName(""); // NOI18N
         Grille.setPreferredSize(new java.awt.Dimension(400, 400));
         Grille.setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().add(Grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, 350));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel3.setText("Méga-Démineur");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Grille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1)
-                                .addGap(39, 39, 39)
-                                .addComponent(jButton2)
-                                .addGap(35, 35, 35)
-                                .addComponent(jButton3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(177, 177, 177)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(220, 220, 220)
-                                .addComponent(jLabel4)
-                                .addGap(87, 87, 87)
-                                .addComponent(jLabel5)
-                                .addGap(75, 75, 75)
-                                .addComponent(jLabel6))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Grille, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 600, -1));
+        stop.setText("Stopper la partie");
+        stop.setActionCommand("Stop");
+        stop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopActionPerformed(evt);
+            }
+        });
+        getContentPane().add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, 200, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facileActionPerformed
+        Grille.setVisible(true);
+        stop.setVisible(true);
+        Difficulté.setVisible(false);
+    }//GEN-LAST:event_facileActionPerformed
+
+    private void moyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moyenActionPerformed
+        Grille.setVisible(true);
+        stop.setVisible(true);
+        Difficulté.setVisible(false);
+    }//GEN-LAST:event_moyenActionPerformed
+
+    private void difficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficileActionPerformed
+        Grille.setVisible(true);
+        stop.setVisible(true);
+        Difficulté.setVisible(false);
+    }//GEN-LAST:event_difficileActionPerformed
+
+    private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
+        Grille.setVisible(false);
+        stop.setVisible(false);
+        Difficulté.setVisible(true);
+    }//GEN-LAST:event_stopActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,16 +215,17 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Difficulté;
     private javax.swing.JPanel Grille;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton difficile;
+    private javax.swing.JButton facile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton moyen;
+    private javax.swing.JButton stop;
     // End of variables declaration//GEN-END:variables
 }
