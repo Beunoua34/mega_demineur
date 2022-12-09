@@ -21,7 +21,30 @@ public class Grille {
             this.grille=new Cellule[100][100];
         }
     }
-    
+    public int nbBombesAutour(int ligne, int col){
+        int nb_bombes=0;
+        int taille=grille.length;
+        if (ligne==0){ //si on est sur la ligne du bas
+            if (col==0){ //si on est dans le coin inferieur gauche
+                if (grille[ligne+1][col].PresenceBombe()) nb_bombes+=1; //case au dessus
+                if (grille[ligne+1][col+1].PresenceBombe()) nb_bombes+=1;   //case superieur droite
+                if (grille[ligne][col+1].PresenceBombe()) nb_bombes+=1; //case a droite
+                return nb_bombes;                  
+            } else if (col==taille){ //si on est dans le coin inferieur droit
+                if (grille[ligne+1][col].PresenceBombe()) nb_bombes+=1; //case au dessus
+                if (grille[ligne][col-1].PresenceBombe()) nb_bombes+=1; //case a gauche 
+                if (grille[1][taille].PresenceBombe()) nb_bombes+=1;
+            } else {//si on est pas dans un coin
+                if (grille[-1][0].PresenceBombe()) nb_bombes+=1;
+                if (grille[taille-1][taille-1].PresenceBombe()) nb_bombes+=1;   
+                if (grille[0][taille-1].PresenceBombe()) nb_bombes+=1;
+                if (grille[1][1].PresenceBombe()) nb_bombes+=1;   
+                if (grille[0][1].PresenceBombe()) nb_bombes+=1;
+            }
+            
+        }
+        return nb_bombes;
+    }
     
        
 }

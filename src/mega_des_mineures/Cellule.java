@@ -19,7 +19,7 @@ public class Cellule {
         presenceDrapeau=true;
     } 
 
-    public boolean isPresenceBombe() {
+    public boolean PresenceBombe() {
         return presenceBombe;
     }
 
@@ -27,7 +27,7 @@ public class Cellule {
         return bombeAutour;
     }
 
-    public boolean isPresenceDrapeau() {
+    public boolean PresenceDrapeau() {
         return presenceDrapeau;
     }
 
