@@ -11,6 +11,28 @@ package mega_des_mineures;
 public class Cellule {
     private boolean presenceBombe=false;
     private int bombeAutour;
-    private boolean presenceDrapeau=false;
+    private boolean presenceDrapeau=false; //au depart on n'a ni bombe ni drapeau
+    public void placerBombe(){
+        presenceBombe=true;
+    } 
+    public void placerDrapeau(){
+        presenceDrapeau=true;
+    } 
+
+    public boolean isPresenceBombe() {
+        return presenceBombe;
+    }
+
+    public int getBombeAutour() {
+        return bombeAutour;
+    }
+
+    public boolean isPresenceDrapeau() {
+        return presenceDrapeau;
+    }
+
+    public void setBombeAutour(int bombeAutour) {
+        this.bombeAutour = bombeAutour;
+    }
     
 }
