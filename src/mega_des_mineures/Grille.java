@@ -146,7 +146,7 @@ public class Grille {
     }
 
     public void demasquerCases() {
-        for (int k = 0; k < grille.length; k++) {
+        for (int k = 0; k < grille.length; k++) { //on repete plusieurs fois l'action pour traiter toutes les cases
             for (int i = 0; i < grille.length; i++) {
                 for (int j = 0; j < grille.length; j++) {
                     if (grille[i][j].isCache() == false) {
@@ -159,5 +159,14 @@ public class Grille {
             }
         }
     }
+    public void demasquerBombes(){//en fin de partie, on utlisera cette fonctions pour montrer ou etaient les bombes
+        for (int i = 0; i < grille.length; i++) {
+                for (int j = 0; j < grille.length; j++) {
+                    if (grille[i][j].PresenceBombe()){
+                        grille[i][j].setCache(false);
+                    }
+                }
+    }
 
+}
 }

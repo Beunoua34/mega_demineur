@@ -63,9 +63,6 @@ public class CelluleGraphique extends JButton {
                 setIcon(vide);
             }
         }
-        //pour test, a enlever
-        if (celluleAssociee.PresenceBombe()) {
-            setIcon(bombe);}
-        //
+        
     }
 }
