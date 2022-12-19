@@ -53,9 +53,10 @@ public class Interface extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         panneau_grille = new javax.swing.JPanel();
-        stop = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         Drapeaux = new javax.swing.JLabel();
         infos = new javax.swing.JLabel();
+        stop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1000, 1000));
@@ -110,7 +111,9 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(DifficultéLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addGroup(DifficultéLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel1))
                     .addComponent(jLabel2)
                     .addGroup(DifficultéLayout.createSequentialGroup()
                         .addComponent(facile)
@@ -141,7 +144,7 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(difficile)
                     .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 90, 400, 110));
@@ -157,6 +160,10 @@ public class Interface extends javax.swing.JFrame {
         panneau_grille.setLayout(new java.awt.GridLayout(10, 10));
         getContentPane().add(panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
+        Drapeaux.setText("jLabel7");
+
+        infos.setText("jLabel7");
+
         stop.setText("Stopper la partie");
         stop.setActionCommand("Stop");
         stop.addActionListener(new java.awt.event.ActionListener() {
@@ -164,13 +171,34 @@ public class Interface extends javax.swing.JFrame {
                 stopActionPerformed(evt);
             }
         });
-        getContentPane().add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 200, 30));
 
-        Drapeaux.setText("jLabel7");
-        getContentPane().add(Drapeaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Drapeaux)
+                        .addGap(26, 26, 26)
+                        .addComponent(stop)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Drapeaux)
+                    .addComponent(stop, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(infos)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        infos.setText("jLabel7");
-        getContentPane().add(infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 240, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -204,6 +232,10 @@ public class Interface extends javax.swing.JFrame {
         initialiser_partie(dif);
     }//GEN-LAST:event_difficileActionPerformed
 
+    private void difficileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_difficileMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_difficileMouseClicked
+
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
         panneau_grille.setVisible(false);
         stop.setVisible(false);
@@ -211,10 +243,6 @@ public class Interface extends javax.swing.JFrame {
         Difficulté.setVisible(true);
         Drapeaux.setVisible(false);
     }//GEN-LAST:event_stopActionPerformed
-
-    private void difficileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_difficileMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_difficileMouseClicked
 
     /**
      * @param args the command line arguments
@@ -284,7 +312,27 @@ public class Interface extends javax.swing.JFrame {
                         if (evt.getButton() == MouseEvent.BUTTON3) {
                             System.out.println("droit");
                             if (cell.PresenceDrapeau()){
+                                cell.enleverDrapeau();
+                                plateau.setNb_drapeaux(plateau.getNb_drapeaux()+1);//on redonne un drapeau au joueur
+                                Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
+                                Drapeaux.repaint();
+                                panneau_grille.repaint();
+                                infos.setVisible(false);
                                 
+                            } else{
+                                if (plateau.getNb_drapeaux()==0){
+                                    infos.setText("Récupérez un drapeau pour continuer.");
+                                    infos.setVisible(true);
+                                } else {
+                                    cell.placerDrapeau();
+                                    plateau.setNb_drapeaux(plateau.getNb_drapeaux()-1);
+                                    Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
+                                    Drapeaux.repaint();
+                                    cellGraph.repaint();
+                                    if (plateau.getNb_drapeaux()==0){
+                                        
+                                    }
+                                }
                             }
                             
                         }
@@ -317,6 +365,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton moyen;
     private javax.swing.JPanel panneau_grille;
     private javax.swing.JButton stop;

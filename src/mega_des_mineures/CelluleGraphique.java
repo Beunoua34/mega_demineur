@@ -26,12 +26,17 @@ public class CelluleGraphique extends JButton {
     ImageIcon cinq = new javax.swing.ImageIcon(getClass().getResource("/Images/5.png"));
     ImageIcon six = new javax.swing.ImageIcon(getClass().getResource("/Images/6.png"));
     ImageIcon cache = new javax.swing.ImageIcon(getClass().getResource("/Images/cache.png"));
+    ImageIcon drapeau = new javax.swing.ImageIcon(getClass().getResource("/Images/drapeau.png"));
 
     @Override
     public void paintComponent(Graphics G) {
         super.paintComponent(G);
         if (celluleAssociee.isCache()) {
-            setIcon(cache);
+            if (celluleAssociee.PresenceDrapeau()) {
+                setIcon(drapeau);
+            } else {
+                setIcon(cache);
+            }
         } else if (celluleAssociee.PresenceBombe()) {
             setIcon(bombe);
         } else {
