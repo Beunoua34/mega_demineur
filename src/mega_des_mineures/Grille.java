@@ -11,14 +11,22 @@ package mega_des_mineures;
 public class Grille {
 
     Cellule[][] grille; //on declare un niveau de difficulte allant de 1 a 3 et une grille dont la taille depend de la difficulte
+    int nb_drapeaux;
 
+    public int getNb_drapeaux() {
+        return nb_drapeaux;
+    }
+
+    public void setNb_drapeaux(int nb_drapeaux) {
+        this.nb_drapeaux = nb_drapeaux;
+    }
     public Grille(int difficulte) {
         if (difficulte == 1) {
-            this.grille = new Cellule[25][25];
+            this.grille = new Cellule[10][10];
         } else if (difficulte == 2) {
-            this.grille = new Cellule[50][50];
+            this.grille = new Cellule[20][20];
         } else if (difficulte == 3) {
-            this.grille = new Cellule[100][100];
+            this.grille = new Cellule[30][30];
         }
     }
 

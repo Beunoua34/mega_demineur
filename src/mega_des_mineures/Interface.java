@@ -4,6 +4,10 @@
  */
 package mega_des_mineures;
 
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author guilh
@@ -15,9 +19,10 @@ public class Interface extends javax.swing.JFrame {
      */
     public Interface() {
         initComponents();
-        Grille.setVisible(false);
+        panneau_grille.setVisible(false);
+        infos.setVisible(false);
         stop.setVisible(false);
-
+        Drapeaux.setVisible(false);
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < 26; j++) {
                 //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
@@ -47,10 +52,13 @@ public class Interface extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Grille = new javax.swing.JPanel();
+        panneau_grille = new javax.swing.JPanel();
         stop = new javax.swing.JButton();
+        Drapeaux = new javax.swing.JLabel();
+        infos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 1000));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Difficulté.setBackground(new java.awt.Color(255, 255, 255));
@@ -75,6 +83,11 @@ public class Interface extends javax.swing.JFrame {
         });
 
         difficile.setText("Difficile");
+        difficile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                difficileMouseClicked(evt);
+            }
+        });
         difficile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 difficileActionPerformed(evt);
@@ -82,13 +95,13 @@ public class Interface extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel4.setText("25x25");
+        jLabel4.setText("10x10");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel5.setText("50x50");
+        jLabel5.setText("20x20");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel6.setText("100x100");
+        jLabel6.setText("30x30");
 
         javax.swing.GroupLayout DifficultéLayout = new javax.swing.GroupLayout(Difficulté);
         Difficulté.setLayout(DifficultéLayout);
@@ -111,14 +124,14 @@ public class Interface extends javax.swing.JFrame {
                         .addComponent(difficile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         DifficultéLayout.setVerticalGroup(
             DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DifficultéLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -128,21 +141,21 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(difficile)
                     .addComponent(jLabel6))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 400, 110));
+        getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 90, 400, 110));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setText("Méga-Démineur");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 400, 70));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 400, 70));
 
-        Grille.setBackground(new java.awt.Color(255, 255, 255));
-        Grille.setMinimumSize(new java.awt.Dimension(400, 400));
-        Grille.setName(""); // NOI18N
-        Grille.setPreferredSize(new java.awt.Dimension(400, 400));
-        Grille.setLayout(new java.awt.GridLayout(1, 0));
-        getContentPane().add(Grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, 350));
+        panneau_grille.setBackground(new java.awt.Color(255, 255, 255));
+        panneau_grille.setMinimumSize(new java.awt.Dimension(400, 400));
+        panneau_grille.setName(""); // NOI18N
+        panneau_grille.setPreferredSize(new java.awt.Dimension(400, 400));
+        panneau_grille.setLayout(new java.awt.GridLayout(10, 10));
+        getContentPane().add(panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
 
         stop.setText("Stopper la partie");
         stop.setActionCommand("Stop");
@@ -151,39 +164,57 @@ public class Interface extends javax.swing.JFrame {
                 stopActionPerformed(evt);
             }
         });
-        getContentPane().add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, 200, 30));
+        getContentPane().add(stop, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 200, 30));
+
+        Drapeaux.setText("jLabel7");
+        getContentPane().add(Drapeaux, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+
+        infos.setText("jLabel7");
+        getContentPane().add(infos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facileActionPerformed
-        Grille.setVisible(true);
+        panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
+        Drapeaux.setVisible(true);
         dif = 1;
         initialiser_partie(dif);
+
 
     }//GEN-LAST:event_facileActionPerformed
 
     private void moyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moyenActionPerformed
-        Grille.setVisible(true);
+        panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
+        Drapeaux.setVisible(true);
         dif = 2;
+        initialiser_partie(dif);
     }//GEN-LAST:event_moyenActionPerformed
 
     private void difficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_difficileActionPerformed
-        Grille.setVisible(true);
+        panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
+        Drapeaux.setVisible(true);
         dif = 3;
+        initialiser_partie(dif);
     }//GEN-LAST:event_difficileActionPerformed
 
     private void stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopActionPerformed
-        Grille.setVisible(false);
+        panneau_grille.setVisible(false);
         stop.setVisible(false);
+        panneau_grille.removeAll();
         Difficulté.setVisible(true);
+        Drapeaux.setVisible(false);
     }//GEN-LAST:event_stopActionPerformed
+
+    private void difficileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_difficileMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_difficileMouseClicked
 
     /**
      * @param args the command line arguments
@@ -221,38 +252,65 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void initialiser_partie(int a) {
-        if (a == 1) {
-            for (int i = 0; i < 25; i++) {
-                for (int j = 0; j < 25; j++) {
-                    //Cellule cellGraph = new Cellule();
-                    //Grille.add(cellGraph);
-                }
-            }
 
-        } else if (a == 2) {
-            for (int i = 0; i < 25; i++) {
-                for (int j = 0; j < 25; j++) {
-                    //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
-                   // Grille.add(cellGraph);
-                }
-            }
+        Grille plateau = new Grille(a);
+        int nb_case = 0;
+        int nb_bombes = 0;
+        if (a == 1) {
+            nb_case = 10;
+        }
+        if (a == 2) {
+            nb_case = 20;
 
         } else if (a == 3) {
-            for (int i = 0; i < 25; i++) {
-                for (int j = 0; j < 25; j++) {
-                    //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
-                   // Grille.add(cellGraph);
-                }
-            }
+            nb_case = 30;
+        }
 
+        panneau_grille.setLayout(new java.awt.GridLayout(nb_case, nb_case));
+
+        panneau_grille.setPreferredSize(new Dimension(nb_case * 15, nb_case * 15));
+        panneau_grille.setMinimumSize(new Dimension(nb_case * 15, nb_case * 15));
+        for (int i = 0; i < nb_case; i++) {
+            for (int j = 0; j < nb_case; j++) {
+                plateau.grille[i][j] = new Cellule();
+                if (plateau.grille[i][j].placerBombe()) {
+                    nb_bombes += 1;
+                }
+
+                CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
+                cellGraph.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent evt) {
+                        Cellule cell=cellGraph.celluleAssociee;
+                        if (evt.getButton() == MouseEvent.BUTTON3) {
+                            System.out.println("droit");
+                            if (cell.PresenceDrapeau()){
+                                
+                            }
+                            
+                        }
+                        if (evt.getButton() == MouseEvent.BUTTON1) {
+                            System.out.println("gauche");
+                        }
+                    }
+                });
+                panneau_grille.add(cellGraph);
+            }
+            panneau_grille.repaint();
+        }
+        plateau.setNb_drapeaux(nb_bombes);
+        Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
+        for (int i = 0; i < nb_case; i++) {
+            for (int j = 0; j < nb_case; j++) {
+                plateau.grille[i][j].setBombeAutour(plateau.nbBombesAutour(i, j));
+            }
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Difficulté;
-    private javax.swing.JPanel Grille;
+    private javax.swing.JLabel Drapeaux;
     private javax.swing.JButton difficile;
     private javax.swing.JButton facile;
+    private javax.swing.JLabel infos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -260,6 +318,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton moyen;
+    private javax.swing.JPanel panneau_grille;
     private javax.swing.JButton stop;
     // End of variables declaration//GEN-END:variables
 }

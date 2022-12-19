@@ -9,15 +9,40 @@ package mega_des_mineures;
  * @author benba
  */
 public class Cellule {
-    private boolean presenceBombe=false;
+
+    private int alea;
+
+    public Cellule() {
+    }
+    private boolean presenceBombe = false;
     private int bombeAutour;
-    private boolean presenceDrapeau=false; //au depart on n'a ni bombe ni drapeau
-    public void placerBombe(){
-        presenceBombe=true;
-    } 
-    public void placerDrapeau(){
-        presenceDrapeau=true;
-    } 
+    private boolean presenceDrapeau = false; //au depart on n'a ni bombe ni drapeau
+    private boolean cache = true;
+
+    public boolean isCache() {
+        return cache;
+    }
+
+    public boolean placerBombe() {
+        alea = (int) (Math.random() * 8); //on genere un double aleatoire entre 0 et 8
+        if (alea == 1) {
+            presenceBombe = true;
+            return true;
+        }
+        return false;
+    }
+
+    public void enleverDrapeau() {
+        presenceDrapeau = false;
+    }
+
+    public void placerDrapeau() {
+        presenceDrapeau = true;
+    }
+
+    public void setCache(boolean cache) {
+        this.cache = cache;
+    }
 
     public boolean PresenceBombe() {
         return presenceBombe;
@@ -34,5 +59,5 @@ public class Cellule {
     public void setBombeAutour(int bombeAutour) {
         this.bombeAutour = bombeAutour;
     }
-    
+
 }
