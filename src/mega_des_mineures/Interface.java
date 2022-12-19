@@ -311,74 +311,81 @@ public class Interface extends javax.swing.JFrame {
                 cellGraph.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent evt) {
                         Cellule cell = cellGraph.celluleAssociee;
-                        if (evt.getButton() == MouseEvent.BUTTON3) { //si on fait un clic droit
-                            if (plateau.isPremierCoup() == false) {
-                                if (cell.PresenceDrapeau()) {
-                                    cell.enleverDrapeau();
-                                    plateau.setNb_drapeaux(plateau.getNb_drapeaux() + 1);//on redonne un drapeau au joueur
-                                    Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
-                                    Drapeaux.repaint();
-                                    panneau_grille.repaint();
-                                    infos.setVisible(false);
-
-                                } else {
-                                    if (plateau.getNb_drapeaux() == 0) {
-                                        infos.setText("Récupérez un drapeau pour continuer.");
-                                        infos.setVisible(true);
-                                    } else {
-                                        cell.placerDrapeau();
-                                        plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);
+                        if (plateau.isPartieFinie() == false) {
+                            if (evt.getButton() == MouseEvent.BUTTON3) { //si on fait un clic droit
+                                if (plateau.isPremierCoup() == false && cell.isCache() == true) {//si la partie n'est pas finie et que la case n'est pas demasquee
+                                    if (cell.PresenceDrapeau()) {
+                                        cell.enleverDrapeau();
+                                        plateau.setNb_drapeaux(plateau.getNb_drapeaux() + 1);//on redonne un drapeau au joueur
                                         Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
                                         Drapeaux.repaint();
-                                        cellGraph.repaint();
-                                        if (plateau.getNb_drapeaux() == 0) {
-                                            if (plateau.partieGagnante()) {
-                                                infos.setText("Partie gagnée, psahtek");
-                                                infos.setVisible(true);
-                                            }
+                                        panneau_grille.repaint();
+                                        infos.setVisible(false);
 
+                                    } else {
+                                        if (plateau.getNb_drapeaux() == 0) {
+                                            infos.setText("Récupérez un drapeau pour continuer.");
+                                            infos.setVisible(true);
+                                        } else {
+                                            cell.placerDrapeau();
+                                            plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);
+                                            Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
+                                            Drapeaux.repaint();
+                                            cellGraph.repaint();
+                                            if (plateau.getNb_drapeaux() == 0) {
+                                                if (plateau.partieGagnante()) {
+                                                    plateau.setPartieFinie(true);
+                                                    infos.setText("Partie gagnée.");
+
+                                                    infos.setVisible(true);
+                                                }
+
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        if (evt.getButton() == MouseEvent.BUTTON1) { //si on fait un clic gauche
-                            if (plateau.isPremierCoup()) { //si c'est le premier coup
-                                if (cell.PresenceBombe()) {
-                                    cell.enleverBombe();//si des le premier coup le joueur tombe sur une bombe, on l'enleve
-                                    plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);//et on enleve un drapeau;
-                                }
-                                plateau.setPremierCoup(false);//et on precise que le premier coup a ete joue
+                            if (evt.getButton() == MouseEvent.BUTTON1) { //si on fait un clic gauche
+                                if (cell.isCache()&&cell.PresenceDrapeau()==false) {
 
-                                cell.setCache(false);//on decache la case
+                                    if (plateau.isPremierCoup()) { //si c'est le premier coup
+                                        if (cell.PresenceBombe()) {
+                                            cell.enleverBombe();//si des le premier coup le joueur tombe sur une bombe, on l'enleve
+                                            plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);//et on enleve un drapeau;
+                                        }
+                                        plateau.setPremierCoup(false);//et on precise que le premier coup a ete joue
 
-                                plateau.setNb_drapeaux(plateau.getNb_drapeaux() - plateau.enleverBombesPremierCoup());//et on enleve les bombes des cases autour
-                                cell.setBombeAutour(0);
+                                        cell.setCache(false);//on decache la case
 
-                                plateau.demasquerCases();
-                                panneau_grille.repaint();
-                                Drapeaux.setText("Drapeaux :" + plateau.getNb_drapeaux());
-                                Drapeaux.repaint();
-                                Drapeaux.setVisible(true);
-                            } else {
-                                if (cell.PresenceBombe()) {
-                                    infos.setText("Vous avez perdu. Cheh");
-                                    plateau.demasquerBombes();
-                                    infos.repaint();
-                                    infos.setVisible(true);
-                                } else {
-                                    if (cell.getBombeAutour() != 0) {
-                                        cell.setCache(false);
-                                    } else {
-                                        cell.setCache(false);
+                                        plateau.setNb_drapeaux(plateau.getNb_drapeaux() - plateau.enleverBombesPremierCoup());//et on enleve les bombes des cases autour
+                                        cell.setBombeAutour(0);
+
                                         plateau.demasquerCases();
+                                        panneau_grille.repaint();
+                                        Drapeaux.setText("Drapeaux :" + plateau.getNb_drapeaux());
+                                        Drapeaux.repaint();
+                                        Drapeaux.setVisible(true);
+                                    } else {
+                                        if (cell.PresenceBombe()) {
+                                            plateau.setPartieFinie(true);
+                                            infos.setText("Vous avez perdu.");
+                                            plateau.demasquerBombes();
+                                            infos.repaint();
+                                            infos.setVisible(true);
+                                        } else {
+                                            if (cell.getBombeAutour() != 0) {
+                                                cell.setCache(false);
+                                            } else {
+                                                cell.setCache(false);
+                                                plateau.demasquerCases();
+
+                                            }
+                                        }
+                                        panneau_grille.repaint();
 
                                     }
                                 }
-                                panneau_grille.repaint();
-
                             }
-
                         }
                     }
                 });

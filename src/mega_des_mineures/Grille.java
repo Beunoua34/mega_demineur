@@ -14,7 +14,16 @@ public class Grille {
     private int nb_drapeaux;
 
     private boolean premierCoup = true;//on ne peut pas perdre des le premier coup, on le note dans un booleen
+    private boolean partieFinie=false;//variable qui prendra true a la fin de la partie
 
+    public void setPartieFinie(boolean partieFinie) {
+        this.partieFinie = partieFinie;
+    }
+
+    public boolean isPartieFinie() {
+        return partieFinie;
+    }
+    
     public int getNb_drapeaux() {
         return nb_drapeaux;
     }
