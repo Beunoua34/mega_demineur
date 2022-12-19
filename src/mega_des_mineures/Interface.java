@@ -59,9 +59,9 @@ public class Interface extends javax.swing.JFrame {
         stop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 650));
-        setMinimumSize(new java.awt.Dimension(400, 650));
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setMaximumSize(new java.awt.Dimension(400, 670));
+        setMinimumSize(new java.awt.Dimension(400, 670));
+        setPreferredSize(new java.awt.Dimension(525, 670));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Difficulté.setBackground(new java.awt.Color(255, 255, 255));
@@ -149,11 +149,11 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 400, 110));
+        getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 400, 110));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setText("Méga-Démineur");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 400, 70));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 400, 70));
 
         panneau_grille.setBackground(new java.awt.Color(255, 255, 255));
         panneau_grille.setMinimumSize(new java.awt.Dimension(400, 400));
