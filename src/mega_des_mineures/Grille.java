@@ -85,8 +85,46 @@ public class Grille {
         return win;
     }
 
+    public int enleverBombesPremierCoup() {
+        int bombes_enlevees = 0;
+        for (int ligne = 0; ligne < grille.length; ligne++) {
+            for (int col = 0; col < grille.length; col++) {
+                if (grille[ligne][col].isCache() == false) {
+                    for (int i = ligne - 1; i <= ligne + 1; i++) {
+                        if (i < 0) {
+                            i++;
+                        }
+                        if (i >= grille.length) {
+                            break;
+                        }
+                        for (int j = col - 1; j <= col + 1; j++) {
+                            if (j < 0) {
+                                j++;
+                            }
+                            if (j >= grille.length) {
+                                break;
+                            }
+                            if (grille[i][j].PresenceBombe()) {
+                                grille[i][j].enleverBombe();
+                                bombes_enlevees += 1;
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        for (int ligne = 0; ligne < grille.length; ligne++) {
+            for (int col = 0; col < grille.length; col++) {
+                grille[ligne][col].setBombeAutour(nbBombesAutour(ligne, col));
+            }
+        }
+
+        return bombes_enlevees;
+    }
+
     public void demasquerCasesAutour(int ligne, int col) {
-         
+
         for (int i = ligne - 1; i <= ligne + 1; i++) {
             if (i < 0) {
                 i++;
@@ -102,25 +140,24 @@ public class Grille {
                     break;
                 }
                 grille[i][j].setCache(false);
-                
-                
+
             }
         }
     }
 
     public void demasquerCases() {
-        for (int k=0;k<grille.length;k++){
-        for (int i = 0; i < grille.length; i++) {
-            for (int j = 0; j < grille.length; j++) {
-                if (grille[i][j].isCache() == false) {
-                    if (grille[i][j].getBombeAutour() == 0) {
-                        
-                        demasquerCasesAutour(i, j);
+        for (int k = 0; k < grille.length; k++) {
+            for (int i = 0; i < grille.length; i++) {
+                for (int j = 0; j < grille.length; j++) {
+                    if (grille[i][j].isCache() == false) {
+                        if (grille[i][j].getBombeAutour() == 0) {
+
+                            demasquerCasesAutour(i, j);
+                        }
                     }
                 }
             }
         }
-    }
     }
 
 }

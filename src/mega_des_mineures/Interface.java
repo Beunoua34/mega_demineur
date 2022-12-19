@@ -209,7 +209,7 @@ public class Interface extends javax.swing.JFrame {
         panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
-        Drapeaux.setVisible(true);
+        
         dif = 1;
         initialiser_partie(dif);
 
@@ -220,7 +220,7 @@ public class Interface extends javax.swing.JFrame {
         panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
-        Drapeaux.setVisible(true);
+        
         dif = 2;
         initialiser_partie(dif);
     }//GEN-LAST:event_moyenActionPerformed
@@ -229,7 +229,6 @@ public class Interface extends javax.swing.JFrame {
         panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
-        Drapeaux.setVisible(true);
         dif = 3;
         initialiser_partie(dif);
     }//GEN-LAST:event_difficileActionPerformed
@@ -282,7 +281,7 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void initialiser_partie(int a) {
-        
+
         Grille plateau = new Grille(a);
         int nb_case = 0;
         int nb_bombes = 0;
@@ -343,15 +342,25 @@ public class Interface extends javax.swing.JFrame {
 
                         }
                         if (evt.getButton() == MouseEvent.BUTTON1) { //si on fait un clic gauche
-                            if (plateau.isPremierCoup()){
-                                cell.enleverBombe();//si des le premier coup le joueur tombe sur une bombe, on l'enleve
+                            if (plateau.isPremierCoup()) {
+                                if (cell.PresenceBombe()) {
+                                    cell.enleverBombe();//si des le premier coup le joueur tombe sur une bombe, on l'enleve
+                                    plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);//et on enleve un drapeau;
+                                }
                                 plateau.setPremierCoup(false);//et on precise que le premier coup a ete joue
-                                plateau.setNb_drapeaux(plateau.getNb_drapeaux()-1);
+
                                 cell.setCache(false);//on decache la case
+
+                                plateau.setNb_drapeaux(plateau.getNb_drapeaux() - plateau.enleverBombesPremierCoup());//et on enleve les bombes des cases autour
+                                cell.setBombeAutour(0);
+
                                 plateau.demasquerCases();
                                 panneau_grille.repaint();
+                                Drapeaux.setText("Drapeaux :" + plateau.getNb_drapeaux());
+                                Drapeaux.repaint();
+                                Drapeaux.setVisible(true);
                             }
-                            
+
                         }
                     }
                 });
