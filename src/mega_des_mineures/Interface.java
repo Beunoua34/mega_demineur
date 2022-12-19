@@ -59,7 +59,9 @@ public class Interface extends javax.swing.JFrame {
         stop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 1000));
+        setMaximumSize(new java.awt.Dimension(400, 650));
+        setMinimumSize(new java.awt.Dimension(400, 650));
+        setPreferredSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Difficulté.setBackground(new java.awt.Color(255, 255, 255));
@@ -280,7 +282,7 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void initialiser_partie(int a) {
-        boolean premierCoup=true;//on ne peut pas perdre des le premier coup, on le note dans un booleen
+        
         Grille plateau = new Grille(a);
         int nb_case = 0;
         int nb_bombes = 0;
@@ -309,7 +311,7 @@ public class Interface extends javax.swing.JFrame {
                 cellGraph.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent evt) {
                         Cellule cell = cellGraph.celluleAssociee;
-                        if (evt.getButton() == MouseEvent.BUTTON3) {
+                        if (evt.getButton() == MouseEvent.BUTTON3) { //si on fait un clic droit
                             System.out.println("droit");
                             if (cell.PresenceDrapeau()) {
                                 cell.enleverDrapeau();
@@ -340,7 +342,15 @@ public class Interface extends javax.swing.JFrame {
                             }
 
                         }
-                        if (evt.getButton() == MouseEvent.BUTTON1) {
+                        if (evt.getButton() == MouseEvent.BUTTON1) { //si on fait un clic gauche
+                            if (plateau.isPremierCoup()){
+                                cell.enleverBombe();//si des le premier coup le joueur tombe sur une bombe, on l'enleve
+                                plateau.setPremierCoup(false);//et on precise que le premier coup a ete joue
+                                plateau.setNb_drapeaux(plateau.getNb_drapeaux()-1);
+                                cell.setCache(false);//on decache la case
+                                plateau.demasquerCases();
+                                panneau_grille.repaint();
+                            }
                             
                         }
                     }

@@ -32,6 +32,10 @@ public class Cellule {
         return false;
     }
 
+    public void enleverBombe() {
+        presenceBombe = false;
+    }
+
     public void enleverDrapeau() {
         presenceDrapeau = false;
     }

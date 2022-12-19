@@ -27,7 +27,8 @@ public class CelluleGraphique extends JButton {
     ImageIcon six = new javax.swing.ImageIcon(getClass().getResource("/Images/6.png"));
     ImageIcon cache = new javax.swing.ImageIcon(getClass().getResource("/Images/cache.png"));
     ImageIcon drapeau = new javax.swing.ImageIcon(getClass().getResource("/Images/drapeau.png"));
-
+    ImageIcon vide = new javax.swing.ImageIcon(getClass().getResource("/Images/vide.png"));
+    
     @Override
     public void paintComponent(Graphics G) {
         super.paintComponent(G);
@@ -58,6 +59,13 @@ public class CelluleGraphique extends JButton {
             if (celluleAssociee.getBombeAutour() == 6) {
                 setIcon(six);
             }
+            if (celluleAssociee.getBombeAutour()==0){
+                setIcon(vide);
+            }
         }
+        //pour test, a enlever
+        if (celluleAssociee.PresenceBombe()) {
+            setIcon(bombe);}
+        //
     }
 }
