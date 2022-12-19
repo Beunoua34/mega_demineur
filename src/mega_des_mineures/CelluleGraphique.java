@@ -33,7 +33,7 @@ public class CelluleGraphique extends JButton {
         super.paintComponent(G);
         if (celluleAssociee.isCache()) {
             if (celluleAssociee.PresenceDrapeau()) {
-                setIcon(drapeau);
+               setIcon(drapeau);
             } else {
                 setIcon(cache);
             }

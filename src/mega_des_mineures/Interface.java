@@ -280,7 +280,7 @@ public class Interface extends javax.swing.JFrame {
     }
 
     public void initialiser_partie(int a) {
-
+        boolean premierCoup=true;//on ne peut pas perdre des le premier coup, on le note dans un booleen
         Grille plateau = new Grille(a);
         int nb_case = 0;
         int nb_bombes = 0;
@@ -308,36 +308,40 @@ public class Interface extends javax.swing.JFrame {
                 CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
                 cellGraph.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent evt) {
-                        Cellule cell=cellGraph.celluleAssociee;
+                        Cellule cell = cellGraph.celluleAssociee;
                         if (evt.getButton() == MouseEvent.BUTTON3) {
                             System.out.println("droit");
-                            if (cell.PresenceDrapeau()){
+                            if (cell.PresenceDrapeau()) {
                                 cell.enleverDrapeau();
-                                plateau.setNb_drapeaux(plateau.getNb_drapeaux()+1);//on redonne un drapeau au joueur
+                                plateau.setNb_drapeaux(plateau.getNb_drapeaux() + 1);//on redonne un drapeau au joueur
                                 Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
                                 Drapeaux.repaint();
                                 panneau_grille.repaint();
                                 infos.setVisible(false);
-                                
-                            } else{
-                                if (plateau.getNb_drapeaux()==0){
+
+                            } else {
+                                if (plateau.getNb_drapeaux() == 0) {
                                     infos.setText("Récupérez un drapeau pour continuer.");
                                     infos.setVisible(true);
                                 } else {
                                     cell.placerDrapeau();
-                                    plateau.setNb_drapeaux(plateau.getNb_drapeaux()-1);
+                                    plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);
                                     Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
                                     Drapeaux.repaint();
                                     cellGraph.repaint();
-                                    if (plateau.getNb_drapeaux()==0){
-                                        
+                                    if (plateau.getNb_drapeaux() == 0) {
+                                        if (plateau.partieGagnante()) {
+                                            infos.setText("Partie gagnée, psahtek");
+                                            infos.setVisible(true);
+                                        }
+
                                     }
                                 }
                             }
-                            
+
                         }
                         if (evt.getButton() == MouseEvent.BUTTON1) {
-                            System.out.println("gauche");
+                            
                         }
                     }
                 });
