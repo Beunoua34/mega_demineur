@@ -51,6 +51,7 @@ public class Interface extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        vie = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
         panneau_grille = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -71,6 +72,8 @@ public class Interface extends javax.swing.JFrame {
 
         jLabel2.setText("Choisissez une difficulté :");
 
+        facile.setBackground(new java.awt.Color(255, 255, 0));
+        facile.setForeground(new java.awt.Color(0, 0, 0));
         facile.setText("Facile");
         facile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +81,8 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        moyen.setBackground(new java.awt.Color(255, 153, 0));
+        moyen.setForeground(new java.awt.Color(0, 0, 0));
         moyen.setText("Moyen");
         moyen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +90,8 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        difficile.setBackground(new java.awt.Color(255, 0, 0));
+        difficile.setForeground(new java.awt.Color(0, 0, 0));
         difficile.setText("Difficile");
         difficile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -106,6 +113,10 @@ public class Interface extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel6.setText("30x30");
 
+        vie.setBackground(new java.awt.Color(51, 255, 0));
+        vie.setForeground(new java.awt.Color(0, 0, 0));
+        vie.setText("1 vie");
+
         javax.swing.GroupLayout DifficultéLayout = new javax.swing.GroupLayout(Difficulté);
         Difficulté.setLayout(DifficultéLayout);
         DifficultéLayout.setHorizontalGroup(
@@ -113,10 +124,12 @@ public class Interface extends javax.swing.JFrame {
             .addGroup(DifficultéLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(DifficultéLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jLabel1))
-                    .addComponent(jLabel2)
+                        .addComponent(jLabel1)
+                        .addGap(44, 44, 44)
+                        .addComponent(vie))
                     .addGroup(DifficultéLayout.createSequentialGroup()
                         .addComponent(facile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,9 +147,14 @@ public class Interface extends javax.swing.JFrame {
         DifficultéLayout.setVerticalGroup(
             DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DifficultéLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DifficultéLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1))
+                    .addGroup(DifficultéLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(vie, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DifficultéLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -146,7 +164,7 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(difficile)
                     .addComponent(jLabel6))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         getContentPane().add(Difficulté, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 400, 110));
@@ -417,5 +435,6 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JButton moyen;
     private javax.swing.JPanel panneau_grille;
     private javax.swing.JButton stop;
+    private javax.swing.JToggleButton vie;
     // End of variables declaration//GEN-END:variables
 }

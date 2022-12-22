@@ -12,6 +12,16 @@ public class Grille {
 
     Cellule[][] grille; //on declare un niveau de difficulte allant de 1 a 3 et une grille dont la taille depend de la difficulte
     private int nb_drapeaux;
+    private int life; //nombre de vie restantes au joueur
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+    
 
     private boolean premierCoup = true;//on ne peut pas perdre des le premier coup, on le note dans un booleen
     private boolean partieFinie=false;//variable qui prendra true a la fin de la partie
