@@ -12,7 +12,7 @@ public class Grille {
 
     Cellule[][] grille; //on declare un niveau de difficulte allant de 1 a 3 et une grille dont la taille depend de la difficulte
     private int nb_drapeaux;
-    private int life; //nombre de vie restantes au joueur
+    private int life =1; //nombre de vie restantes au joueur
 
     public int getLife() {
         return life;

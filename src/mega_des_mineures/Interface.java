@@ -4,6 +4,7 @@
  */
 package mega_des_mineures;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,6 +24,7 @@ public class Interface extends javax.swing.JFrame {
         infos.setVisible(false);
         stop.setVisible(false);
         Drapeaux.setVisible(false);
+        infovie.setVisible(false);
         for (int i = 0; i < 26; i++) {
             for (int j = 0; j < 26; j++) {
                 //CelluleGraphique cellGraph = new CelluleGraphique(plateau.grille[i][j]);
@@ -32,6 +34,8 @@ public class Interface extends javax.swing.JFrame {
     }
 
     private int dif;
+    private int life = 3; //variable definissant le nombre de vie avec lesquelles le joueur debute la partie
+    private int life_partie = 3;//variable qui sera modifiee lorsque le joueur perd une vie
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +62,7 @@ public class Interface extends javax.swing.JFrame {
         Drapeaux = new javax.swing.JLabel();
         infos = new javax.swing.JLabel();
         stop = new javax.swing.JButton();
+        infovie = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(400, 670));
@@ -115,7 +120,12 @@ public class Interface extends javax.swing.JFrame {
 
         vie.setBackground(new java.awt.Color(51, 255, 0));
         vie.setForeground(new java.awt.Color(0, 0, 0));
-        vie.setText("1 vie");
+        vie.setText("3 vies");
+        vie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout DifficultéLayout = new javax.swing.GroupLayout(Difficulté);
         Difficulté.setLayout(DifficultéLayout);
@@ -192,6 +202,8 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
+        infovie.setText("jLabel7");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -204,7 +216,9 @@ public class Interface extends javax.swing.JFrame {
                         .addComponent(Drapeaux)
                         .addGap(26, 26, 26)
                         .addComponent(stop)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(infovie, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,13 +226,15 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Drapeaux)
-                    .addComponent(stop, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(stop, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(infovie, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(infos)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 240, 80));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 350, 80));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -227,7 +243,14 @@ public class Interface extends javax.swing.JFrame {
         panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
-
+        vie.setVisible(false);
+        if (life == 3) {
+            infovie.setText(life + " vies");
+        } else {
+            infovie.setText(life + " vie");
+        }
+        life_partie = life;//on remet le nombre de vie adequat si le joueur en a perdu dans la partie d'avant.
+        infovie.setVisible(true);
         dif = 1;
         initialiser_partie(dif);
 
@@ -238,7 +261,14 @@ public class Interface extends javax.swing.JFrame {
         panneau_grille.setVisible(true);
         stop.setVisible(true);
         Difficulté.setVisible(false);
-
+        vie.setVisible(false);
+        if (life == 3) {
+            infovie.setText(life + " vies");
+        } else {
+            infovie.setText(life + " vie");
+        }
+        life_partie = life;//on remet le nombre de vie adequat si le joueur en a perdu dans la partie d'avant.
+        infovie.setVisible(true);
         dif = 2;
         initialiser_partie(dif);
     }//GEN-LAST:event_moyenActionPerformed
@@ -248,6 +278,14 @@ public class Interface extends javax.swing.JFrame {
         stop.setVisible(true);
         Difficulté.setVisible(false);
         dif = 3;
+        vie.setVisible(false);
+        if (life == 3) {
+            infovie.setText(life + " vies");
+        } else {
+            infovie.setText(life + " vie");
+        }
+        life_partie = life;//on remet le nombre de vie adequat si le joueur en a perdu dans la partie d'avant.
+        infovie.setVisible(true);
         initialiser_partie(dif);
     }//GEN-LAST:event_difficileActionPerformed
 
@@ -262,7 +300,23 @@ public class Interface extends javax.swing.JFrame {
         Difficulté.setVisible(true);
         Drapeaux.setVisible(false);
         infos.setVisible(false);
+        vie.setVisible(true);
+        infovie.setVisible(false);
     }//GEN-LAST:event_stopActionPerformed
+
+    private void vieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vieActionPerformed
+        if (life == 3) {
+            life = 1;
+            life_partie = 1;
+            vie.setText("1 vie");
+            vie.setBackground(Color.red);
+        } else if (life == 1) {
+            life = 3;
+            life_partie = 3;
+            vie.setText("3 vies");
+            vie.setBackground(Color.green);
+        }
+    }//GEN-LAST:event_vieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,6 +404,7 @@ public class Interface extends javax.swing.JFrame {
                                             Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
                                             Drapeaux.repaint();
                                             cellGraph.repaint();
+                                            infos.setVisible(false);
                                             if (plateau.getNb_drapeaux() == 0) {
                                                 if (plateau.partieGagnante()) {
                                                     plateau.setPartieFinie(true);
@@ -364,8 +419,8 @@ public class Interface extends javax.swing.JFrame {
                                 }
                             }
                             if (evt.getButton() == MouseEvent.BUTTON1) { //si on fait un clic gauche
-                                if (cell.isCache()&&cell.PresenceDrapeau()==false) {
-
+                                if (cell.isCache() && cell.PresenceDrapeau() == false) {
+                                    infos.setVisible(false);
                                     if (plateau.isPremierCoup()) { //si c'est le premier coup
                                         if (cell.PresenceBombe()) {
                                             cell.enleverBombe();//si des le premier coup le joueur tombe sur une bombe, on l'enleve
@@ -385,11 +440,31 @@ public class Interface extends javax.swing.JFrame {
                                         Drapeaux.setVisible(true);
                                     } else {
                                         if (cell.PresenceBombe()) {
-                                            plateau.setPartieFinie(true);
-                                            infos.setText("Vous avez perdu.");
-                                            plateau.demasquerBombes();
-                                            infos.repaint();
-                                            infos.setVisible(true);
+                                            life_partie--;//le joueur perd une vie
+                                            if (life_partie == 0) {
+                                                infovie.setText("0 vie");
+                                                infovie.repaint();
+                                                plateau.setPartieFinie(true);
+                                                infos.setText("Vous avez perdu.");
+                                                plateau.demasquerBombes();
+                                                infos.repaint();
+                                                infos.setVisible(true);
+                                            } else { //si il reste des vies au joueur
+                                                if (life_partie != 1) {
+                                                    infovie.setText(life_partie + " vies");
+                                                } else {
+                                                    infovie.setText(life_partie + " vie");
+                                                }
+                                                infovie.repaint();
+                                                cell.setCache(false);
+                                                //une bombe a explose donc on a besoin d'un drapeau en moins
+                                                plateau.setNb_drapeaux(plateau.getNb_drapeaux() - 1);
+                                                Drapeaux.setText("Drapeaux: " + plateau.getNb_drapeaux());
+                                                Drapeaux.repaint();
+                                                infos.setText("boum.");
+                                                infos.repaint();
+                                                infos.setVisible(true);
+                                            }
                                         } else {
                                             if (cell.getBombeAutour() != 0) {
                                                 cell.setCache(false);
@@ -425,6 +500,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JButton difficile;
     private javax.swing.JButton facile;
     private javax.swing.JLabel infos;
+    private javax.swing.JLabel infovie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
